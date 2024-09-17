@@ -3,9 +3,9 @@
     <h1 class="text-2xl font-bold mb-4">Convertisseur de Texte Japonais</h1>
     <form @submit.prevent="convertText" class="space-y-4">
       <div>
-        <label for="inputText" class="block text-lg font-medium text-gray-700"
-          >Texte en Japonais</label
-        >
+        <label for="inputText" class="block text-lg font-medium text-gray-700">
+          Texte en Japonais
+        </label>
         <textarea
           id="inputText"
           v-model="inputText"
@@ -13,6 +13,18 @@
           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           placeholder="Entrez le texte en japonais ici"
         ></textarea>
+      </div>
+      <div>
+        <label class="block text-lg font-medium text-gray-700">
+          Position des Furigana
+        </label>
+        <select
+          v-model="furiganaPosition"
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        >
+          <option value="above">Au-dessus</option>
+          <option value="below">En-dessous</option>
+        </select>
       </div>
       <button
         type="submit"
@@ -23,16 +35,20 @@
     </form>
     <div
       v-if="convertedText"
+      :class="furiganaClass"
       class="mt-4 p-4 border rounded-md border-gray-200"
     >
       <h2 class="text-lg font-medium">Résultat</h2>
-      <div v-html="convertedText" class="mt-2 text-gray-700"></div>
+      <div
+        v-html="convertedText"
+        class="mt-2 text-gray-700 result-container"
+      ></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed, watch } from "vue";
 import axios from "axios";
 
 export default defineComponent({
@@ -40,34 +56,98 @@ export default defineComponent({
   setup() {
     const inputText = ref("");
     const convertedText = ref("");
+    const furiganaPosition = ref("above");
+
+    const furiganaClass = computed(() => {
+      return furiganaPosition.value === "below"
+        ? "furigana-below"
+        : "furigana-above";
+    });
 
     const convertText = async () => {
       try {
-        console.log("inputText: ", inputText.value);
-
         const response = await axios.post(
           "http://localhost:3000/nihongo/convert",
           {
             text: inputText.value,
             to: "hiragana",
+            furiganaPosition: furiganaPosition.value,
           }
         );
         convertedText.value = response.data;
+        console.log("Received HTML:", convertedText.value);
       } catch (error) {
         console.error("Error converting text:", error);
         convertedText.value = "Erreur lors de la conversion du texte.";
       }
     };
 
+    // Ajout d'un watcher pour reconvertir le texte lorsque la position change
+    watch(furiganaPosition, () => {
+      if (inputText.value) {
+        convertText();
+      }
+    });
+
     return {
       inputText,
       convertedText,
       convertText,
+      furiganaPosition,
+      furiganaClass,
     };
   },
 });
 </script>
 
 <style scoped>
-/* Vous pouvez ajouter des styles spécifiques ici si nécessaire */
+/* Styles pour les furigana au-dessus */
+.furigana-above :deep(ruby) {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  vertical-align: top;
+  margin: 0 0.2em;
+}
+
+.furigana-above :deep(ruby rt) {
+  display: block;
+  font-size: 0.5em;
+  line-height: 1.1;
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+/* Styles pour les furigana en-dessous */
+.furigana-below :deep(ruby) {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: bottom;
+  margin: 0 0.2em 0.2em 0.2em;
+}
+
+.furigana-below :deep(ruby rt) {
+  display: block;
+  font-size: 0.5em;
+  line-height: 1.1;
+  text-align: center;
+  order: 1;
+  margin-top: 0.2em;
+}
+
+/* Cacher les parenthèses */
+:deep(ruby rp) {
+  display: none;
+}
+
+/* Espacement entre les lignes de texte */
+.result-container {
+  line-height: 2.5; /* Espacement entre les lignes de texte */
+}
+
+/* Préserver l'espacement entre kanji et furigana en ciblant uniquement les rubies */
+.result-container :deep(ruby) {
+  line-height: 1;
+}
 </style>
