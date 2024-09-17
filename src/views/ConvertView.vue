@@ -10,7 +10,7 @@
           id="inputText"
           v-model="inputText"
           rows="4"
-          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
           placeholder="Entrez le texte en japonais ici"
         ></textarea>
       </div>
@@ -27,8 +27,7 @@
         </select>
       </div>
       <button
-        type="submit"
-        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        class="px-4 py-2 bg-emerald text-white rounded-md hover:bg-emerald-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald"
       >
         Convertir
       </button>
