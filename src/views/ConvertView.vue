@@ -22,8 +22,8 @@
           v-model="furiganaPosition"
           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         >
-          <option value="above">Au-dessus</option>
           <option value="below">En-dessous</option>
+          <option value="above">Au-dessus</option>
         </select>
       </div>
       <button
@@ -55,7 +55,7 @@ export default defineComponent({
   setup() {
     const inputText = ref("");
     const convertedText = ref("");
-    const furiganaPosition = ref("above");
+    const furiganaPosition = ref("below");
 
     const furiganaClass = computed(() => {
       return furiganaPosition.value === "below"
