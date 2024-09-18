@@ -142,6 +142,7 @@ export default defineComponent({
 
 /* Espacement entre les lignes de texte */
 .result-container {
+  white-space: pre-wrap;
   line-height: 2.5; /* Espacement entre les lignes de texte */
 }
 
