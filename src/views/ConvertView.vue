@@ -66,7 +66,7 @@ export default defineComponent({
     const convertText = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/nihongo/convert",
+          "https://furigana-backend.onrender.com/nihongo/convert",
           {
             text: inputText.value,
             to: "hiragana",
