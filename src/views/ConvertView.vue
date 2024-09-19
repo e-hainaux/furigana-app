@@ -1,10 +1,12 @@
 <template>
-  <div class="p-4 max-w-2xl mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Convertisseur de Texte Japonais</h1>
+  <div class="main-container p-4 max-w-2xl mx-auto">
+    <h1 class="text-xl font-bold mb-16">
+      Visualiseur de furigana pour textes japonais
+    </h1>
     <form @submit.prevent="convertText" class="space-y-4">
       <div>
         <label for="inputText" class="block text-lg font-medium text-gray-700">
-          Texte en Japonais
+          Texte à convertir
         </label>
         <textarea
           id="inputText"
@@ -100,6 +102,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.main-container {
+  margin-top: 200px;
+}
 /* Styles pour les furigana au-dessus */
 .furigana-above :deep(ruby) {
   display: inline-flex;
@@ -149,5 +154,19 @@ export default defineComponent({
 /* Préserver l'espacement entre kanji et furigana en ciblant uniquement les rubies */
 .result-container :deep(ruby) {
   line-height: 1;
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    width: 50vw;
+    margin-left: 100%;
+    padding-right: 56px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-container {
+    margin-top: 150px;
+  }
 }
 </style>
