@@ -1,18 +1,23 @@
 <template>
-  <div class="main-container p-4 max-w-2xl mx-auto">
-    <h1 class="text-xl font-bold mb-16">
+  <div class="main-container p-4 pt-0">
+    <h1
+      class="w-full text-xl text-center font-bold mb-16 mt-0 mb-6 pl-1 pr-1 lg:mt-2 sm:px-2 text-2XL"
+    >
       Visualiseur de furigana pour textes japonais
     </h1>
-    <form @submit.prevent="convertText" class="space-y-4">
+    <form @submit.prevent="convertText" class="px-4 space-y-4">
       <div>
-        <label for="inputText" class="block text-lg font-medium text-gray-700">
+        <label
+          for="inputText"
+          class="block text-lg font-medium text-gray-700 mb-4"
+        >
           Texte à convertir
         </label>
         <textarea
           id="inputText"
           v-model="inputText"
           rows="4"
-          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 h-40"
           placeholder="Entrez le texte en japonais ici"
         ></textarea>
       </div>
@@ -37,23 +42,28 @@
     <div
       v-if="convertedText"
       :class="furiganaClass"
-      class="mt-4 p-4 border rounded-md border-gray-200"
+      class="mt-4 p-4 mx-4 border rounded-md border-gray-200 bg-white bg-opacity-40"
     >
       <h2 class="text-lg font-medium">Résultat</h2>
       <div
         v-html="convertedText"
-        class="mt-2 text-gray-700 result-container"
+        class="mt-2 p-4 text-gray-700 result-container"
       ></div>
     </div>
+    <FooterComponent />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed, watch } from "vue";
 import axios from "axios";
+import FooterComponent from "@/components/FooterComponent.vue";
 
 export default defineComponent({
   name: "ConvertView",
+  components: {
+    FooterComponent,
+  },
   setup() {
     const inputText = ref("");
     const convertedText = ref("");
@@ -103,7 +113,8 @@ export default defineComponent({
 
 <style scoped>
 .main-container {
-  margin-top: 200px;
+  margin-top: 150px;
+  padding: 24px 0 0 0;
 }
 /* Styles pour les furigana au-dessus */
 .furigana-above :deep(ruby) {
@@ -158,15 +169,27 @@ export default defineComponent({
 
 @media (min-width: 1024px) {
   .main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 50vw;
+    height: 100vh;
+    margin-top: 0;
     margin-left: 100%;
-    padding-right: 56px;
+    padding: 0 16px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .main-container {
     margin-top: 150px;
+    padding: 24px 0 0 0;
+  }
+
+  h1 {
+    margin: 0 0 36px 0;
+    font-size: medium;
+    text-align: center;
   }
 }
 </style>
