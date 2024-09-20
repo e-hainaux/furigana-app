@@ -18,7 +18,9 @@
           v-model="inputText"
           rows="4"
           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 h-40"
-          placeholder="Entrez le texte en japonais ici"
+          placeholder="秋の風
+木の葉が舞い散る
+音もなし"
         ></textarea>
       </div>
       <div>
@@ -76,11 +78,13 @@ export default defineComponent({
     });
 
     const convertText = async () => {
+      const textToConvert =
+        inputText.value || "秋の風\n木の葉が舞い散る\n音もなし";
       try {
         const response = await axios.post(
           "https://furigana-backend.onrender.com/nihongo/convert",
           {
-            text: inputText.value,
+            text: textToConvert,
             to: "hiragana",
             furiganaPosition: furiganaPosition.value,
           }
