@@ -29,6 +29,7 @@ defineComponent({
 <style scoped>
 .footer {
   width: 100vw;
+  height: auto;
   text-align: center;
   margin-top: 24px;
   padding: 1rem;
