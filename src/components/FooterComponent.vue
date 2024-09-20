@@ -6,6 +6,7 @@
         href="https://www.linkedin.com/in/e-hainaux"
         target="_blank"
         rel="noopener noreferrer"
+        class="no-underline focus:outline-none hover:bg-transparent"
       >
         <img
           src="@/assets/LinkedInLogo.svg"
