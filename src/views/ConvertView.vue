@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-between items-center w-[100vw] px-0 mt-[150px] pt-6 md:pt-0 lg:w-[50vw] md:mt-[180px] md:h-[100vh] lg:ml-[100%] lg:mt-[40px]"
+    class="flex flex-col justify-between items-center h-[100vh] w-[100vw] px-0 mt-[150px] pt-6 md:pt-0 lg:w-[50vw] md:mt-[180px] md:h-[100vh] lg:ml-[100%] lg:mt-[40px]"
   >
     <h1
       class="w-full text-xl text-center font-bold mb-16 mt-0 mb-6 pl-1 pr-1 lg:mt-2 sm:px-2 text-2XL"
