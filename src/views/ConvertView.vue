@@ -24,8 +24,8 @@
           rows="4"
           class="w-[96%] mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 h-40"
           placeholder="秋風に
-          たなびく雲の
-          絶え間より"
+たなびく雲の
+絶え間より"
         ></textarea>
       </div>
       <div>
