@@ -1,17 +1,19 @@
 <template>
-  <footer class="footer">
-    <p class="footer-text">
+  <footer
+    class="w-full mt-6 py-4 bg-gray-100 border-t border-gray-300 text-center"
+  >
+    <p class="flex justify-center items-center text-gray-600 m-0">
       Created by Emilien Hainaux © 2024
       <a
         href="https://www.linkedin.com/in/e-hainaux"
         target="_blank"
         rel="noopener noreferrer"
-        class="no-underline focus:outline-none hover:bg-transparent"
+        class="ml-2 hover:opacity-100 focus:outline-none select-none hover:bg-transparent"
       >
         <img
           src="@/assets/LinkedInLogo.svg"
           alt="LinkedIn"
-          class="linkedin-icon"
+          class="w-5 h-5 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer select-none"
         />
       </a>
     </p>
@@ -25,44 +27,3 @@ defineComponent({
   name: "FooterComponent",
 });
 </script>
-
-<style scoped>
-.footer {
-  width: 100vw;
-  height: auto;
-  text-align: center;
-  margin-top: 24px;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-}
-
-.footer-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  color: #6c757d;
-}
-
-.linkedin-icon {
-  width: 20px;
-  height: 20px;
-  margin-left: 8px;
-  filter: grayscale(100%);
-  transition: filter 0.3s;
-  cursor: pointer;
-}
-
-.linkedin-icon:hover {
-  filter: grayscale(0%);
-}
-
-@media (min-width: 1024px) {
-  .footer {
-    width: 100%;
-    margin-top: 24px;
-  }
-}
-</style>
