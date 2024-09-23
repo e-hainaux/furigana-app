@@ -1,11 +1,16 @@
 <template>
-  <div class="main-container h-full p-4 pt-0">
+  <div
+    class="flex flex-col justify-between items-center w-[100vw] px-0 mt-[150px] pt-6 md:pt-0 lg:w-[50vw] md:mt-[180px] md:h-[100vh] lg:ml-[100%] lg:mt-[40px]"
+  >
     <h1
       class="w-full text-xl text-center font-bold mb-16 mt-0 mb-6 pl-1 pr-1 lg:mt-2 sm:px-2 text-2XL"
     >
       Visualiseur de furigana pour textes japonais
     </h1>
-    <form @submit.prevent="convertText" class="w-full px-4 space-y-4">
+    <form
+      @submit.prevent="convertText"
+      class="w-full px-4 space-y-4 lg:pr-[40px]"
+    >
       <div>
         <label
           for="inputText"
@@ -29,7 +34,7 @@
         </label>
         <select
           v-model="furiganaPosition"
-          class="w-40 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          class="w-40 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm md:w-40"
         >
           <option value="below">En-dessous</option>
           <option value="above">Au-dessus</option>
@@ -41,16 +46,20 @@
         Convertir
       </button>
     </form>
-    <div
-      v-if="convertedText"
-      :class="furiganaClass"
-      class="w-[90%] mt-4 p-4 mx-4 border rounded-md border-gray-200 bg-white bg-opacity-40"
-    >
-      <h2 class="text-lg font-medium">Résultat</h2>
+    <div class="w-full px-4 space-y-4 lg:pr-[40px]">
       <div
-        v-html="convertedText"
-        class="mt-2 p-4 text-gray-700 result-container"
-      ></div>
+        v-if="convertedText"
+        :class="[
+          furiganaClass,
+          'w-full mt-4 p-4  border rounded-md border-gray-200 bg-white bg-opacity-40',
+        ]"
+      >
+        <h2 class="text-lg font-medium">Résultat</h2>
+        <div
+          v-html="convertedText"
+          class="result-container mt-2 p-4 text-gray-700"
+        ></div>
+      </div>
     </div>
     <FooterComponent />
   </div>
@@ -116,16 +125,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
-  margin-top: 150px;
-  padding: 24px 0 0 0;
-}
 /* Styles pour les furigana au-dessus */
 .furigana-above :deep(ruby) {
   display: inline-flex;
@@ -178,7 +177,7 @@ export default defineComponent({
 }
 
 @media (min-width: 1024px) {
-  .main-container {
+  /* .main-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -187,14 +186,17 @@ export default defineComponent({
     margin-top: 0;
     margin-left: 100%;
     padding: 0 16px;
+  } */
+  .result-container {
+    padding-right: 40px;
   }
 }
 
 @media (max-width: 600px) {
-  .main-container {
+  /* .main-container {
     margin-top: 150px;
     padding: 24px 0 0 0;
-  }
+  } */
 
   h1 {
     margin: 0 0 36px 0;
