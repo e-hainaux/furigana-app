@@ -51,7 +51,7 @@
         v-if="convertedText"
         :class="[
           furiganaClass,
-          'w-full mt-4 p-4 text-lg border rounded-md border-gray-200 bg-white bg-opacity-40',
+          'w-full mt-4 p-4 text-xl border rounded-md border-gray-200 bg-white bg-opacity-40',
         ]"
       >
         <h2 class="text-lg font-medium">Résultat</h2>
